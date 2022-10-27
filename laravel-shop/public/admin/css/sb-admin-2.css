@@ -129,6 +129,11 @@ dd {
   margin-left: 0;
 }
 
+td .td-lable
+{
+  padding-right: 10px;
+}
+
 blockquote {
   margin: 0 0 1rem;
 }
