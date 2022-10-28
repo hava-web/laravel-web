@@ -32,7 +32,7 @@ class CategoryController extends Controller
         if($request->hasFile('image'))
         {
             $file = $request->file('image');
-            $ext = $file->getClientOriginalExtention();
+            $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
 
             $file->move('uploads/category/',$filename);
@@ -42,7 +42,7 @@ class CategoryController extends Controller
         $category->meta_keyword = $validatedData['meta_keyword'];
         $category->meta_description = $validatedData['meta_description'];
 
-        $category->status == true ? '1':'0';
+        $category->status = $request->status == true ? '1':'0';
         $category->save();
 
         return redirect('admin/category')->with('message','Category added succesfully');
