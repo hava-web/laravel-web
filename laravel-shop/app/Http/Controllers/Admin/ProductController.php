@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductFormRequest;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use Illuminate\Support\Str;
+use App\Models\ProductImage;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\ProductFormRequest;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class ProductController extends Controller
 {
@@ -122,5 +125,40 @@ class ProductController extends Controller
             return redirect('admin/products')->with('message','No Such Product Id Found');
         }
 
+    }
+
+    public function destroyImage(int $product_image_id)
+    {
+        $productImage = ProductImage::findOrFail($product_image_id);
+        if(File::exists($productImage->image))
+        {
+            File::delete($productImage->image);
+        }
+        $productImage->delete();
+        // return response()->json([
+        //     'message' => 'Delete successfully',
+        // ]
+        // );
+        return redirect()->back()->with('message','Product Image Deleted');
+    }
+
+    public function destroy(int $product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        if($product->productImages())
+        {
+            foreach($product->productImages() as $image)
+            {
+                if(File::exists($image->image))
+                {
+                    File::delete($image->image);
+                }
+            }
+        }
+        $product->delete();
+        // return response()->json([
+        //     'message' => 'Delete Product Successfully',
+        // ]);
+        return redirect()->back()->with('message','Product Deleted Successfully');
     }
 }

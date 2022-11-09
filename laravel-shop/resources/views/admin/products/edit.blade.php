@@ -1,6 +1,9 @@
 @extends('layouts/admin')
 @section('content')
 
+@if (session('message'))
+    <div class="alert alert-success"><h4>{{ session('message') }}</h4></div>
+@endif
 @if ($errors->any())
 <div class="">
     @foreach ($errors as $error)
@@ -35,8 +38,9 @@
                     <div class="mb-3">
                         <label for="">Category</label>
                         <select name="category_id" class="form-control" id="">
+                            <option value="">Select Category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ $category->id == $product->category_id }}>
+                                <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected':'' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
@@ -54,7 +58,7 @@
                         <label for="">Select Brand</label>
                         <select name="brand" class="form-control" id=""> 
                             @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}" {{ $brand->name == $product->brand ? 'selected':'' }}>
+                                <option value="{{ $brand->name }}" {{ $brand->name == $product->brand ? 'selected':'' }}>
                                     {{ $brand->name }}
                                 </option>
                             @endforeach
@@ -124,9 +128,15 @@
                     </div>
                     <div class="">
                         @if ($product->productImages)
-                            @foreach ($product->productImages as $image)
-                            <img src="{{ asset($image->image) }}" style="width: 80px; height: 80px;" class="me-4" alt="img">
-                            @endforeach
+                            <div class="row">
+                                @foreach ($product->productImages as $image)
+                                <div class="col-md-2">
+                                    <img src="{{ asset($image->image) }}" style="width: 80px; height: 80px;" class="me-4" alt="img">
+                                    <a href="{{ url('admin/product-image/'.$image->id.'/delete') }}" class="d-block">Remove</a>
+                                </div>  
+                                @endforeach
+                            </div>
+                           
                         @else
                         <h5>No Image Added</h5>
                         @endif

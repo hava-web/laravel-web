@@ -12,8 +12,7 @@
         <h1 class="h3 mb-0 text-gray-800">Add Product</h1>
         <a href="{{ url('admin/products') }}" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm">Back</a>
     </div> 
-   
-       
+
         <form action="{{ url('admin/products') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <ul class="nav nav-tabs" id="myTab" role="tablist">
