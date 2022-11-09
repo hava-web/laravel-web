@@ -83,9 +83,9 @@
                 <a class="collapse-item" href="{{ url('admin/products/create') }}">Add Product</a>
 
                 <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+                <h6 class="collapse-header">Color</h6>
+                <a class="collapse-item" href="{{ url('admin/colors') }}">View Colors</a>
+                <a class="collapse-item" href="{{ url('admin/colors/create') }}">Add Color</a>
             </div>
         </div>
     </li>
