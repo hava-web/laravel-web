@@ -79,7 +79,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Product</h6>
-                <a class="collapse-item" href="{{ url('admin/products') }}">View Produt</a>
+                <a class="collapse-item" href="{{ url('admin/products') }}">View Product</a>
                 <a class="collapse-item" href="{{ url('admin/products/create') }}">Add Product</a>
 
                 <div class="collapse-divider"></div>

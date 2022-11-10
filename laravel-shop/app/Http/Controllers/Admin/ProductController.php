@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Color;
 use Illuminate\Support\Facades\File as FacadesFile;
 
 class ProductController extends Controller
@@ -25,7 +26,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.products.create',compact('categories','brands'));
+        $colors = Color::where('status','0')->get();
+        return view('admin.products.create',compact('categories','brands','colors'));
     }
 
 
@@ -64,6 +66,18 @@ class ProductController extends Controller
                 'product_id' => $product->id,
                 'image' => $finalImagePathName,
             ]);
+            }
+        }
+
+        if($request->colors)
+        {
+            foreach($request->colors as $key => $color)
+            {
+                $product->productColors()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'quantity' => $request->colorquantity[$key] ?? 0
+                ]);
             }
         }
         return redirect('/admin/products')->with('message','Product Added Successfully');

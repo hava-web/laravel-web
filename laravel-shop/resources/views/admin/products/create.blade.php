@@ -27,7 +27,10 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="image-tab" data-toggle="tab" data-target="#image" type="button" role="tab" aria-controls="image" aria-selected="false">Image</button>
-                    </li>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="color-tab" data-toggle="tab" data-target="#color" type="button" role="tab" aria-controls="color" aria-selected="false">Color</button>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade border p-3 show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -116,6 +119,26 @@
                     <div class="mb-3">
                         <label for="">Upload Product Image</label>
                         <input type="file" name="image[]" multiple class="form-control" id=""/>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="color" role="tabpanel" aria-labelledby="color-tab">
+                    <div class="mb-3">
+                        <label for="">Select Color</label>
+                        <div class="row">
+                            @forelse($colors as $color)
+                            <div class="col-md-3">
+                                <div class="p-2 border mb-3">
+                                    Color: <input type="checkbox" name="colors[{{ $color->id }}]" value="{{ $color->id }}" id=""/>{{ $color->name }}
+                                    <br>
+                                    Quantity: <input type="number" name="colorquantity[{{ $color->id }}]" style="width: 70px; border: 1px solid " id="">
+                                </div>
+                            </div>
+                            @empty
+                            <div class="col-md-12">
+                                <h1>No Color Not Found</h1>
+                            </div>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
