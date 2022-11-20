@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductFormRequest;
 use App\Models\Color;
+use App\Models\ProductColors;
 use Illuminate\Support\Facades\File as FacadesFile;
 
 class ProductController extends Controller
@@ -89,7 +90,11 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $product = Product::findOrFail($product_id);
-        return view('admin.products.edit',compact('categories','brands','product'));
+
+        $product_color = $product->productColors->pluck('color_id')->toArray();
+        $colors = Color::whereNotIn('id',$product_color)->get();
+
+        return view('admin.products.edit',compact('categories','brands','product','colors'));
     }
 
     public function update(int $product_id, ProductFormRequest $request)
@@ -132,6 +137,19 @@ class ProductController extends Controller
                 ]);
                 }
             }
+
+            if($request->colors)
+            {
+                foreach($request->colors as $key => $color)
+                {
+                    $product->productColors()->create([
+                        'product_id' => $product->id,
+                        'color_id' => $color,
+                        'quantity' => $request->colorquantity[$key] ?? 0
+                    ]);
+                }
+            }
+
             return redirect('/admin/products')->with('message','Product Updated Successfully');
         }
         else
@@ -174,5 +192,22 @@ class ProductController extends Controller
         //     'message' => 'Delete Product Successfully',
         // ]);
         return redirect()->back()->with('message','Product Deleted Successfully');
+    }
+
+    public function updateProdColorQty(Request $request, $prod_color_id)
+    {
+        $productColorData = Product::findOrFail($request->product_id)
+                            ->productColors()->where('id',$prod_color_id)->first();
+        $productColorData->update([
+            'quantity' => $request->qty
+        ]);
+        return response()->json(['message'=>'Product Code Quantity Updated']);
+    }
+
+    public function deleteProdColor($prod_color_id)
+    {
+        $prodColor = ProductColors::findOrFail($prod_color_id);
+        $prodColor->delete();
+        return response()->json(['message' => 'Product Color Deleted']);
     }
 }
