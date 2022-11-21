@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductController;
 
 
 Route::get('/', function () {
@@ -26,7 +28,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::put('/category/{category}','update');
     });
 
-    Route::controller(App\Http\Controllers\Admin\ProductController::class)->group(function()
+    Route::controller(ProductController::class)->group(function()
     {
         Route::get('/products','index');
         Route::get('/products/create','create');
@@ -39,6 +41,14 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::post('product-color/{prod_color_id}','updateProdColorQty');
         Route::get('product-color/{prod_color_id}/delete','deleteProdColor');
         
+    });
+
+    Route::controller(SliderController::class)->group(function()
+    {
+        Route::get('sliders','index');
+        Route::get('sliders/create','create');
+        Route::post('sliders/create','store');
+
     });
 
     Route::get('/brands',App\Http\Livewire\Admin\Brand\Index::class);

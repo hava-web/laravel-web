@@ -117,9 +117,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="mb-3">
+                            <div class="mb-3 check-status">
                                 <label for="">Status</label>
-                                <input type="checkbox" name="status" {{ $product->status == '1'?'checked':'' }} id="" style="width: 20px; height: 20px;">
+                                <input type="checkbox" name="status" {{ $product->status == '1'?'checked':'' }} id="">
                             </div>
                         </div>
                     </div>

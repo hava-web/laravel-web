@@ -99,7 +99,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="{{ url('admin/sliders') }}">
             <i class="fas fa-sliders-h"></i>
             <span>Slide</span></a>
     </li>

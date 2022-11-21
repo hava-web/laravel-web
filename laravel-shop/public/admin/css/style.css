@@ -1,0 +1,38 @@
+.check-status input[type="checkbox"]
+{
+    position: relative;
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgb(0, 0, 0, .2);
+    transition: .5s;
+}
+
+.check-status input:checked[type="checkbox"]
+{
+    background: #4e73df;
+}
+
+.check-status input[type="checkbox"]::before
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    border: 1px solid #858796;
+    background: #fff;
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+.check-status input:checked[type="checkbox"]::before
+{
+    left: 20px;
+}
