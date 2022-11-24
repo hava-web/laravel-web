@@ -18,6 +18,11 @@
             <div class="mb-3 title-color">
                 <label for="">Color Name</label>
                 <input type="text" name="name" class="form-control" id="">
+                @error('color')
+                    <small class="text-danger">
+                        {{ $message }}
+                    </small>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="">Color Code</label>
