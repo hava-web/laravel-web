@@ -9,6 +9,9 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
    <title>@yield('title')</title>
+   <meta name="description" content="@yield('meta_description')">
+   <meta name="keyword" content="@yield('meta_keyword')">
+   <meta name="author" content="Ha"> 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
