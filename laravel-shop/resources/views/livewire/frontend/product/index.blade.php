@@ -1,7 +1,45 @@
 <div>
+    <div class="row">
+        <div class="col-md-3">
+            @if ($category->brands)
+            <div class="card">
+                <div class="card-header"><h4>Brands</h4></div>
+                <div class="card-body">
+                    @foreach ($category->brands as $brand)
+                    <label class="d-block">
+                        <div class="mb-3 ">
+                            <input type="checkbox" name="" wire:model="brandInputs" value="{{ $brand->name }}"> {{ $brand->name }}
+                        </div> 
+                    </label>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
+            <div class="card mt-3">
+                <div class="card-header"><h4>Price</h4></div>
+                <div class="card-body">
+                   
+                    <label class="d-block">
+                        <div class="mb-3 ">
+                            <input type="radio" name="priceSort" wire:model="priceInput" value="hight-to-low"> High to Low
+                        </div> 
+                    </label>
+                    <label class="d-block">
+                        <div class="mb-3 ">
+                            <input type="radio" name="priceSort" wire:model="priceInput" value="low-to-high"> Low to High
+                        </div> 
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9">
+
+       
    <div class="row">
     @forelse ($products as $product)
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="product-card">
             <div class="product-card-img">
                 @if ($product->quantity > 0)     
@@ -43,4 +81,7 @@
     </div>
 @endforelse
    </div>
+
+    </div>
+  </div>
 </div>
