@@ -45,7 +45,7 @@ class ProductFormRequest extends FormRequest
         'small_description' => [
             'required',
             'string',
-            'max:255',
+            'max:700',
         ],
         'description' => [
             'required',
