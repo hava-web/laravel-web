@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontentController;
-
+use App\Http\Controllers\Frontend\WishlistController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -19,6 +19,11 @@ Route::get('/',[FrontentController::class, 'index']);
 Route::get('/collections',[FrontentController::class,'categories']);
 Route::get('/collections/{category_slug}',[FrontentController::class,'products']);
 Route::get('/collections/{category_slug}/{product_slug}',[FrontentController::class,'productView']);
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/wishlist',[WishlistController::class,'index']);
+
+});
 
 
 
