@@ -12,7 +12,7 @@ class WishListShow extends Component
     {
         Wishlist::where('user_id',auth()->user()->id)->where('id',$wishlistId)->delete();
         session()->flash('message','Remove item successfully');
-
+        $this->emit('wishlistAddedUpdated');
         $this->dispatchBrowserEvent('message',[
             'text' => 'Remove item successfully !',
             'type' => 'success',
