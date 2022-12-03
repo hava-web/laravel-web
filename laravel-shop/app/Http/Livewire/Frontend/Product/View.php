@@ -62,7 +62,7 @@ class View extends Component
 
     public function decrementQuantity()
     {
-        if($this->quantityCount >0)
+        if($this->quantityCount > 1)
         {
             $this->quantityCount--;
         }
