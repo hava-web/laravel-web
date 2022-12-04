@@ -59,4 +59,9 @@ class FrontentController extends Controller
             return redirect()->back();
         }
     }
+
+    public function orderSuccess()
+    {
+        return view('frontend.order-success');
+    }
 }

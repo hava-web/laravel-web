@@ -65,11 +65,11 @@
                     <span class="selling-price">${{ $product->selling_price }}</span>
                     <span class="original-price">${{ $product->original_price }}</span>
                 </div>
-                <div class="mt-2">
-                    <a href="" class="btn btn1">Add To Cart</a>
+                {{-- <div class="mt-2">
+                    <button type="button" wire:click="addToCart({{$product->id}})" class="btn btn1">Add To Cart</button>
                     <a href="" class="btn btn1"> <i class="fa fa-heart"></i> </a>
                     <a href="" class="btn btn1"> View </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
