@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Color extends Model
 {
@@ -14,4 +15,14 @@ class Color extends Model
         'code',
         'status',
     ];
+
+    /**
+     * Get all of the productColor for the Color
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function productColor(): HasMany
+    {
+        return $this->hasMany(ProductColors::class, 'product_color_id', 'id');
+    }
 }

@@ -316,3 +316,13 @@
     padding-right: 10px;
 }
 /* Checkout form */
+
+.order-title
+{
+    display: inline-block;
+}
+
+.status
+{
+    padding: 5px;
+}
