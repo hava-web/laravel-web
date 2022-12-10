@@ -106,9 +106,9 @@
 
     <!-- Nav Item - Setting -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-cog"></i>
-            <span>Setting</span></a>
+        <a class="nav-link" href="{{ url('admin/orders') }}">
+            <i class="fa fa-id-card" aria-hidden="true"></i>
+            <span>Orders</span></a>
     </li>
     
 

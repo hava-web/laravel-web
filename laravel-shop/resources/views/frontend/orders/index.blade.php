@@ -54,7 +54,7 @@
                                                         @endif
                                                     </td>
                                                     <td>{{ $item->quantity }}</td>
-                                                    <td>{{ $item->quantity * $item->price }}</td>
+                                                    <td>${{ $item->quantity * $item->price }}</td>
                                                 </tr>
                                                 @endforeach
 

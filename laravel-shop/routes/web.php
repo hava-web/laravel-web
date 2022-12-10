@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderControllers;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontentController;
@@ -87,6 +88,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::get('/colors/{color}/edit','edit');
         Route::put('/colors/{color_id}','update');
         Route::get('/colors/{color_id}/delete','destroy');
+    });
+
+    Route::controller(OrderControllers::class)->group(function()
+    {
+       Route::get('/orders','index'); 
+       Route::get('/orders/{orderId}','show');
     });
 
 });
