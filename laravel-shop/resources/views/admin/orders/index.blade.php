@@ -4,12 +4,16 @@
         <h1 class="h3 mb-0 text-gray-800">All Orders</h1>
         <a href="{{ url('admin/dashboard') }}" class="d-none d-sm-inline-block btn btn btn-primary shadow-sm">Back</a>
     </div>
+    {{-- {{ $datePro }}
+    {{ $dateNow }}
+    {{ $order1 }} --}}
+    {{-- {{ $sub }} --}}
     <div class="card-body">
         <form action="" method="GET">
             <div class="row">
                 <div class="col-md-3">
                     <label for="">Filter by date</label>
-                    <input type="date" value="{{ Request::get('date') ?? date('Y-m-d') }}" class="form-control" name="date" id="">
+                    <input type="date" value="{{ Request::get('date') /*?? date('Y-m-d')*/ }}" class="form-control" name="date" id="">
                 </div>
                 <div class="col-md-3">
                     <label for="">Filter by status</label>
@@ -60,6 +64,12 @@
                                         @endif
                                         @if ($order->status_message == "canceled")
                                             <span class="text-uppercase text-white bg-danger status">{{ $order->status_message }}</span>
+                                        @endif
+                                        @if ($order->status_message == "pending")
+                                        <span class="text-uppercase text-white bg-warning status">{{ $order->status_message }}</span>
+                                        @endif
+                                        @if ($order->status_message == "pending")
+                                            
                                         @endif
                                     <td>
                                         <a href="{{ url('admin/orders/'.$order->id) }}" class="btn btn-primary btn-sm float-end">View Details</a>
