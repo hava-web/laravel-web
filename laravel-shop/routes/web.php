@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontentController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\WishlistController;
 
 // Route::get('/', function () {
@@ -25,6 +26,7 @@ Route::get('/collections/{category_slug}',[FrontentController::class,'products']
 Route::get('/collections/{category_slug}/{product_slug}',[FrontentController::class,'productView']);
 
 Route::middleware(['auth'])->group(function(){
+    Route::get('/profile',[ProfileController::class,'index']);
     Route::get('/wishlist',[WishlistController::class,'index']);
     Route::get('/cart',[CartController::class,'index']);
     Route::get('/checkout',[CheckoutController::class,'index']);
@@ -96,7 +98,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
        Route::get('/orders/{orderId}','show');
        Route::put('/orders/{orderId}','updateOrderStatus');
        Route::get('/invoice/{orderId}','viewInvoice');
-       Route::get('/orders/{orderId}/generate','generateInvoice');
+       Route::get('/invoice/{orderId}/generate','generateInvoice');
 
     });
 

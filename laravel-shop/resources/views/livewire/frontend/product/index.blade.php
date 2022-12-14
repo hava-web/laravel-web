@@ -73,13 +73,13 @@
             </div>
         </div>
     </div>
-@empty
+    @empty
     <div class="col-md-12">
         <div class="p-2">
             <h4>No Product Available for {{ $category->name }}</h4>
         </div>
     </div>
-@endforelse
+    @endforelse
    </div>
 
     </div>

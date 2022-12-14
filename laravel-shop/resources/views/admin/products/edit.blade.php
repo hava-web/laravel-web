@@ -40,7 +40,7 @@
                 <div class="tab-pane fade border p-3 show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="mb-3">
                         <label for="">Category</label>
-                        <select name="category_id" class="form-control" id="">
+                        <select name="category_id" class="form-control">
                             <option value="">Select Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected':'' }}>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\Controller;
 
 class OrderControllers extends Controller
 {
@@ -18,7 +20,7 @@ class OrderControllers extends Controller
         $order1 = Order::where('user_id',auth()->user()->id)->first()->created_at;
         $datePro =  Carbon::parse($order1)->timestamp;
         $time = $date->addDays(1)->format('Y-m-d');
-        $sub = $dateNow - $datePro;
+        $sub = CarbonInterval::seconds($dateNow - $datePro)->cascade()->forHumans();
 
         $orders = Order::when($request->date != null,function($q) use ($request){
                 return $q->whereDate('created_at',$request->date);
@@ -66,8 +68,12 @@ class OrderControllers extends Controller
         return view('admin.invoice.generate-invoice',compact('order'));
     }
 
-    public function generateInvoice()
+    public function generateInvoice(int $orderId)
     {
-        # code...
+        $order = Order::findOrFail($orderId);
+        $data = ['order' => $order];
+        $todayDate = Carbon::now()->format('Y-m-d');
+        $pdf = Pdf::loadView('admin.invoice.generate-invoice', $data);
+        return $pdf->download('invoice-'.$order->id.'-'.$todayDate.'.pdf');
     }
 }
