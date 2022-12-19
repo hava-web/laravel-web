@@ -3,16 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\OrderControllers;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\OrderControllers;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontentController;
-use App\Http\Controllers\Frontend\OrderController;
-use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SettingController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -20,10 +24,17 @@ use App\Http\Controllers\Frontend\WishlistController;
 
 Auth::routes();
 
-Route::get('/',[FrontentController::class, 'index']);
-Route::get('/collections',[FrontentController::class,'categories']);
-Route::get('/collections/{category_slug}',[FrontentController::class,'products']);
-Route::get('/collections/{category_slug}/{product_slug}',[FrontentController::class,'productView']);
+// Route::get('/',[FrontentController::class, 'index']);
+// Route::get('/collections',[FrontentController::class,'categories']);
+// Route::get('/collections/{category_slug}',[FrontentController::class,'products']);
+// Route::get('/collections/{category_slug}/{product_slug}',[FrontentController::class,'productView']);
+Route::controller(FrontentController::class)->group(function(){
+    Route::get('/','index');
+    Route::get('/collections','categories');
+    Route::get('/collections/{category_slug}','products');
+    Route::get('/collections/{category_slug}/{product_slug}','productView');
+    Route::get('/new-arrivals','newArrivals');
+});
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/profile',[ProfileController::class,'index']);
@@ -39,13 +50,14 @@ Route::get('order-success',[FrontentController::class,'orderSuccess']);
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
-    Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index']);
+    Route::get('dashboard',[DashboardController::class,'index']);
+    Route::get('setting',[SettingController::class,'index']);
 
     //Category Route
-    Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function ()
+    Route::controller(CategoryController::class)->group(function ()
     {
         Route::get('/category','index');
         Route::get('/category/create','create');

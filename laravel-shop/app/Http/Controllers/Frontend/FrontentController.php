@@ -66,4 +66,10 @@ class FrontentController extends Controller
     {
         return view('frontend.order-success');
     }
+
+    public function newArrivals()
+    {
+        $newArrivalProducts = Product::latest()->take(3)->get();
+        return view('frontend.pages.new-arrival',compact('newArrivalProducts'));
+    }
 }

@@ -7,7 +7,7 @@
     {{-- {{ $datePro }}
     {{ $dateNow }}
     {{ $order1 }} --}}
-    {{ $sub }}
+    {{-- {{ $sub }} --}}
     <div class="card-body">
         <form action="" method="GET">
             <div class="row">

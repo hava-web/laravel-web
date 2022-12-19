@@ -11,31 +11,31 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label>Full Name</label>
-                            <input type="text" value="{{ $customer->fullname }}" id="fullname" class="form-control" placeholder="Enter Full Name" />
+                            <input type="text" wire:model="" value="{{ $customer->fullname }}" id="fullname" class="form-control" placeholder="Enter Full Name" />
                             @error('fullname')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Phone Number</label>
-                            <input type="number" value="{{ $customer->phone }}" id="phone" class="form-control" placeholder="Enter Phone Number" />
+                            <input type="number" name="phone" value="{{ $customer->phone }}" id="phone" class="form-control" placeholder="Enter Phone Number" />
                             @error('phone')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="col-md-12 mb-3">
                             <label>Full Address</label>
-                            <textarea  id="address" class="form-control" rows="2">{{ $customer->address }}</textarea>
+                            <textarea  id="address" name="address" class="form-control" rows="2">{{ $customer->address }}</textarea>
                             @error('address')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="update">
+                        <div class="update" wire:click="UpdateInfor({{ $customer->user_id }})">
                             <button class="btn btn-primary float-end">
-                                <span wire:loading.remove wire:target="UpdateInfor()">
+                                <span wire:loading.remove wire:target="UpdateInfor({{ $customer->user_id }})">
                                     </i> Update
                                 </span>
-                                <span wire:loading wire:target="UpdateInfor($wishlistItem->id)">
+                                <span wire:loading wire:target="UpdateInfor({{ $customer->user_id }})">
                                     Updateing...
                                 </span>
                             </button>

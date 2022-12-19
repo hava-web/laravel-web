@@ -27,6 +27,9 @@
                                     @if ($order->status_message == "canceled")
                                         <h6 class="bg-danger text-white status">Status: {{ $order->status_message }}</h6>
                                     @endif
+                                    @if ($order->status_message == "pending")
+                                        <h6 class="text-white bg-warning status">Status: {{ $order->status_message }}</h6>
+                                    @endif
                                 </div>
                                     <div class="table-responsive">
                                         <table class="table bordered ">
