@@ -14,7 +14,8 @@ class FrontentController extends Controller
     {
         $sliders = Slider::where('status','0')->get();
         $trendingProducts = Product::where('trending','1')->latest()->take(15)->get();
-        return view('frontend.index',compact('sliders','trendingProducts'));
+        $newArrivalProducts = Product::latest()->take(4)->get();
+        return view('frontend.index',compact('sliders','trendingProducts','newArrivalProducts'));
     }
 
     public function categories()

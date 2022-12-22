@@ -40,7 +40,7 @@
     </button>
   </div>
 
-  <div class="py-3 bg-white">
+  <div class="py-3 ">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 text-center">
@@ -98,6 +98,62 @@
           <div class="col-md-12">
               <div class="p-2">
                   <h4>No Product Available for {{ $category->name }}</h4>
+              </div>
+          </div> 
+          @endif
+      </div>
+    </div>
+  </div>
+
+  <div class="py-5 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>New Arrivals
+            <a href="{{ url('new-arrivals') }}" class="btn btn-warning float-end">View More</a>
+          </h4>
+          <div class="underline mb-4"></div>
+        </div>
+        @if ($newArrivalProducts)
+        <div class="row">
+          <div class="owl-carousel owl-theme product-trending">
+            @foreach ($newArrivalProducts as $product)
+            <div class="item">
+                <div class="product-card">
+                    <div class="product-card-img">
+                      <label for="" class="stock bg-success">New</label>
+                        @if ($product->productImages->count() > 0)
+                        <a href="{{ url('/collections/'.$product->category->slug.'/'.$product->slug) }}">
+                            <img src="{{ asset($product->productImages[0]->image) }}" alt="{{ $product->name }}">
+                        </a>
+                        @endif
+                    </div>
+                    <div class="product-card-body">
+                        <p class="product-brand">{{ $product->brand }}</p>
+                        <h5 class="product-name">
+                        <a href="{{ url('/collections/'.$product->category->slug.'/'.$product->name) }}">
+                               {{ $product->name }} 
+                        </a>
+                        </h5>
+                        <div>
+                            <span class="selling-price">${{ $product->selling_price }}</span>
+                            <span class="original-price">${{ $product->original_price }}</span>
+                        </div>
+                        {{-- <div class="mt-2">
+                            <button type="button" wire:click="addToCart({{$product->id}})" class="btn btn1">Add To Cart</button>
+                            <a href="" class="btn btn1"> <i class="fa fa-heart"></i> </a>
+                            <a href="" class="btn btn1"> View </a>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+            @endforeach
+          </div>
+        </div>    
+          @else
+          <div class="col-md-12">
+              <div class="p-2">
+                  <h4>No New Arrivals Available for {{ $category->name }}</h4>
               </div>
           </div> 
           @endif

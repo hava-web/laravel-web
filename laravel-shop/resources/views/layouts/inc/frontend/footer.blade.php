@@ -32,17 +32,17 @@
                     <div class="footer-underline"></div>
                     <div class="mb-2">
                         <p>
-                            <i class="fa fa-map-marker"></i> Lien Trung, Dan Phuong, Ha Noi, Viet Nam
+                            <i class="fa fa-map-marker"></i> {{ $appSetting->address }}
                         </p>
                     </div>
                     <div class="mb-2">
                         <a href="" class="text-white">
-                            <i class="fa fa-phone"></i> 0379165558
+                            <i class="fa fa-phone"></i> {{ $appSetting->phone1 }}
                         </a>
                     </div>
                     <div class="mb-2">
                         <a href="" class="text-white">
-                            <i class="fa fa-envelope"></i> laravelshop@gmail.com
+                            <i class="fa fa-envelope"></i> {{ $appSetting->email1 }}
                         </a>
                     </div>
                 </div>
@@ -58,10 +58,10 @@
                 <div class="col-md-4">
                     <div class="social-media">
                         Get Connected:
-                        <a href=""><i class="fa fa-facebook"></i></a>
-                        <a href=""><i class="fa fa-twitter"></i></a>
-                        <a href=""><i class="fa fa-instagram"></i></a>
-                        <a href=""><i class="fa fa-youtube"></i></a>
+                        <a href="{{ $appSetting->facebook }}"><i class="fa fa-facebook"></i></a>
+                        <a href="{{ $appSetting->twitter }}"><i class="fa fa-twitter"></i></a>
+                        <a href="{{ $appSetting->instagram }}"><i class="fa fa-instagram"></i></a>
+                        <a href="{{ $appSetting->youtube }}"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>

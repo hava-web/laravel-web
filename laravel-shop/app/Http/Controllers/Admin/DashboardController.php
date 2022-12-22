@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 
 class DashboardController extends Controller
 {
@@ -27,8 +28,10 @@ class DashboardController extends Controller
 
         $orders = Order::where('status_message','!=','canceled')->count();
 
+        $customers = Customer::count();
+
         $orders_pending = Order::where('status_message','pending')->count();
-        return view('admin.dashboard',compact('earning','total','orders','orders_pending'));
+        return view('admin.dashboard',compact('earning','total','orders','orders_pending','customers'));
     }
     
 }

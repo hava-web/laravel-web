@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\FrontentController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -55,6 +56,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('dashboard',[DashboardController::class,'index']);
     Route::get('setting',[SettingController::class,'index']);
+    Route::post('setting',[SettingController::class,'store']);
 
     //Category Route
     Route::controller(CategoryController::class)->group(function ()
@@ -112,6 +114,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
        Route::get('/invoice/{orderId}','viewInvoice');
        Route::get('/invoice/{orderId}/generate','generateInvoice');
 
+    });
+
+    Route::controller(UserController::class)->group(function()
+    {
+        Route::get('/users','index');
+        Route::get('/users/create','create');
+        Route::post('/users','store');
+        Route::get('/users/{user_id}/edit','edit');
+        Route::put('/users/{user_id}','update');
+        Route::get('/users/{user_id}/delete','destroy');
     });
 
 });

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('meta_description',500);
             $table->string('address',500);
             $table->string('phone1');
-            $table->string('phoen2');
+            $table->string('phone2');
             $table->string('email1');
             $table->string('email2');
             $table->string('facebook');

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
                     <a href="{{ url('/') }}">
-                        <h5 class="brand-name">Laravel Shop</h5>
+                        <h5 class="brand-name">{{ $appSetting->website_name ?? 'Website Name' }}</h5>
                     </a>
                 </div>
                 <div class="col-md-5 my-auto">
